@@ -1,0 +1,119 @@
+{
+  "contractName": "MyContract",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol\":\"MyContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol\":{\"keccak256\":\"0x421bdf1eeb08c163201d6b169409a10a73763edda360af2322ba8db11d86ee80\",\"urls\":[\"bzz-raw://2fe61982a11257367b872bf864406438d35d9c2699cdb61604d7b607b0d12f3d\",\"dweb:/ipfs/QmY9hk9uToi3TFsRANUfXrAP2cdzd97aEjKyQ4w2wiHASm\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212209fdde4f73d136c47e8680d1c68594899cd64374a5cc82252a6e069eb8f1af95a64736f6c63430008000033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212209fdde4f73d136c47e8680d1c68594899cd64374a5cc82252a6e069eb8f1af95a64736f6c63430008000033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "27:30:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "27:30:1:-:0;;;;;",
+  "source": "pragma solidity ^0.8.0;\r\n\r\ncontract MyContract {\r\n    \r\n}",
+  "sourcePath": "C:/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol",
+  "ast": {
+    "absolutePath": "/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol",
+    "exportedSymbols": {
+      "MyContract": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "MyContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 36,
+        "src": "27:30:1"
+      }
+    ],
+    "src": "0:57:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol",
+    "exportedSymbols": {
+      "MyContract": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "MyContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 36,
+        "src": "27:30:1"
+      }
+    ],
+    "src": "0:57:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x71b50A5893531ca18230eCC5dB9fF3F03f30C175",
+      "transactionHash": "0x2d617dbb30112e271768b45ee9b6ee9b666594ae99259b62a111cd14fcda1a32"
+    }
+  },
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-06-26T10:11:16.717Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
