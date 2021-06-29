@@ -107,3 +107,49 @@ Access the contract's attributes by typing in the console:
 ```sh
 contract.attribute
 ```
+
+# Variables
+
+## Types
+- **fixed-size types**
+  - bool
+  - unit
+  - address
+  - bytes32
+- **varible-size types**
+  - string
+  - bytes
+  - unit[]
+  - mapping(unit => string)
+- **user-defined data**
+  - struct
+  - enum
+
+## Visibility
+- **private**: the variable can be called only within the smart contract.
+- **internal**: the variable can be called by other smart contracts by inheritance but not from the external.
+- **public**: the variable can be called by the external.
+
+Note: if you do not specify the variable visibility, it is automatically set as *private*.
+
+## How to interact with variables
+In your contract type:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+  
+  uint public variableName = 10;
+
+}
+```
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```sh
+MyContract.deployed().then(function(i) { contract=i; })
+```
+```sh
+MyContract.variableName().then(function(v){value=v;})
+```
+```sh
+parseFloat(value)
+```

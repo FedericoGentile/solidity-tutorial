@@ -1,28 +1,28 @@
 {
   "contractName": "MyContract",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol\":\"MyContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol\":{\"keccak256\":\"0x421bdf1eeb08c163201d6b169409a10a73763edda360af2322ba8db11d86ee80\",\"urls\":[\"bzz-raw://2fe61982a11257367b872bf864406438d35d9c2699cdb61604d7b607b0d12f3d\",\"dweb:/ipfs/QmY9hk9uToi3TFsRANUfXrAP2cdzd97aEjKyQ4w2wiHASm\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212209fdde4f73d136c47e8680d1c68594899cd64374a5cc82252a6e069eb8f1af95a64736f6c63430008000033",
-  "deployedBytecode": "0x6080604052600080fdfea26469706673582212209fdde4f73d136c47e8680d1c68594899cd64374a5cc82252a6e069eb8f1af95a64736f6c63430008000033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol\":\"MyContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol\":{\"keccak256\":\"0x44340ba29489b8999e8f6b77ede65defc2f8f4e309da1f5f9f2a369ffa9899e3\",\"urls\":[\"bzz-raw://f087c4b4f8cc19e8051ae5a11aa441d81bc352fb793cb4e2f10d870ac5d18c2f\",\"dweb:/ipfs/Qmc97Xjx3ZrQce87ErJNfSLtbHnjApHkJLLEy2TRsup2T8\"]}},\"version\":1}",
+  "bytecode": "0x6080604052600a600055348015601457600080fd5b50603f8060226000396000f3fe6080604052600080fdfea2646970667358221220424a69f5369201c2f3f09def187ea5a04b842af4828a80056ce83543b8d470b164736f6c63430008000033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220424a69f5369201c2f3f09def187ea5a04b842af4828a80056ce83543b8d470b164736f6c63430008000033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "27:30:1:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "27:30:1:-:0;;;;;",
-  "source": "pragma solidity ^0.8.0;\r\n\r\ncontract MyContract {\r\n    \r\n}",
+  "sourceMap": "27:57:0:-:0;;;76:2;56:22;;27:57;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "27:57:0:-:0;;;;;",
+  "source": "pragma solidity ^0.8.0;\r\n\r\ncontract MyContract {\r\n\r\n    uint private fede = 10;\r\n\r\n}",
   "sourcePath": "C:/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol",
   "ast": {
     "absolutePath": "/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol",
     "exportedSymbols": {
       "MyContract": [
-        35
+        5
       ]
     },
-    "id": 36,
+    "id": 6,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 34,
+        "id": 1,
         "literals": [
           "solidity",
           "^",
@@ -30,7 +30,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:1"
+        "src": "0:23:0"
       },
       {
         "abstract": false,
@@ -38,31 +38,74 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 35,
+        "id": 5,
         "linearizedBaseContracts": [
-          35
+          5
         ],
         "name": "MyContract",
         "nodeType": "ContractDefinition",
-        "nodes": [],
-        "scope": 36,
-        "src": "27:30:1"
+        "nodes": [
+          {
+            "constant": false,
+            "id": 4,
+            "mutability": "mutable",
+            "name": "fede",
+            "nodeType": "VariableDeclaration",
+            "scope": 5,
+            "src": "56:22:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "56:4:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "3130",
+              "id": 3,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "76:2:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_10_by_1",
+                "typeString": "int_const 10"
+              },
+              "value": "10"
+            },
+            "visibility": "private"
+          }
+        ],
+        "scope": 6,
+        "src": "27:57:0"
       }
     ],
-    "src": "0:57:1"
+    "src": "0:84:0"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/feder/Desktop/Solidity Tutorial/contracts/MyContract.sol",
     "exportedSymbols": {
       "MyContract": [
-        35
+        5
       ]
     },
-    "id": 36,
+    "id": 6,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 34,
+        "id": 1,
         "literals": [
           "solidity",
           "^",
@@ -70,7 +113,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:1"
+        "src": "0:23:0"
       },
       {
         "abstract": false,
@@ -78,18 +121,61 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 35,
+        "id": 5,
         "linearizedBaseContracts": [
-          35
+          5
         ],
         "name": "MyContract",
         "nodeType": "ContractDefinition",
-        "nodes": [],
-        "scope": 36,
-        "src": "27:30:1"
+        "nodes": [
+          {
+            "constant": false,
+            "id": 4,
+            "mutability": "mutable",
+            "name": "fede",
+            "nodeType": "VariableDeclaration",
+            "scope": 5,
+            "src": "56:22:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "56:4:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "3130",
+              "id": 3,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "76:2:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_10_by_1",
+                "typeString": "int_const 10"
+              },
+              "value": "10"
+            },
+            "visibility": "private"
+          }
+        ],
+        "scope": 6,
+        "src": "27:57:0"
       }
     ],
-    "src": "0:57:1"
+    "src": "0:84:0"
   },
   "compiler": {
     "name": "solc",
@@ -99,12 +185,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x71b50A5893531ca18230eCC5dB9fF3F03f30C175",
-      "transactionHash": "0x2d617dbb30112e271768b45ee9b6ee9b666594ae99259b62a111cd14fcda1a32"
+      "address": "0x9fcC75f5AD782F469Aaf27278DB61552e2F8648d",
+      "transactionHash": "0x2c7d02c955efdcf610ec3ac8ce207281ce41b903e1758fc34af56d850525bee3"
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-06-26T10:11:16.717Z",
+  "updatedAt": "2021-06-29T20:43:11.326Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
