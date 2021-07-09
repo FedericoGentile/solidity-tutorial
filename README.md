@@ -18,6 +18,14 @@ Type in terminal:
 npm install -g truffle
 ```
 
+## Install Web3
+ Web3.js allows us to make requests to an individual Ethereum node with JSON RPC in order to read and write data to the network.
+
+ Type in terminal:
+```sh
+npm install web3
+```
+
 ## Install Metamask
 MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet through a browser extension or mobile app, which can then be used to interact with decentralized applications.
 
@@ -148,8 +156,58 @@ Deploy the contract by typing in the terminal `truffle migrate` and then open th
 MyContract.deployed().then(function(i) { contract=i; })
 ```
 ```sh
-MyContract.variableName().then(function(v){value=v;})
+contract.variableName().then(function(v){value=v;})
 ```
 ```sh
 parseFloat(value)
+```
+
+# Functions
+A function can be defined in this generic way:
+```
+function functionName() visibilityKeyword modifierKeyword returns(dataType)
+```
+## Visibility keywords
+- **private**: the function can be called only within the smart contract.
+-  **internal**: the function can be called by other smart contracts by inheritance but not from the external.
+- **external**: the function can only be called from the outside from smart-contract.
+- **public**: the function can be called within the smart contract and from the outside.
+
+Note: when using the **private** or **internal** keyword, use *_FunctionName* as a convention.
+
+## Modifier keywords
+- **view**: the function is not capable of writing to the blockchain. It is a read-only function.
+- **pure**: the function is not capable of writing to the blockchain but it allows to perform computations. It is a read-only function.
+- *Nothing*: the function is capable of writing to the blockchain.
+
+## How to interact with functions
+In your contract type:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+  
+  string name;
+
+    function setName(string memory _name) external {
+        name = _name;
+    }
+
+    function getName() external view returns(string memory) {
+        return name;
+    }
+
+}
+```
+This contract allows to assign a string to a variable and write it and read it from the blockchain.
+
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```sh
+MyContract.deployed().then(function(i) { contract=i; })
+```
+```sh
+contract.setName('variableName')
+```
+```sh
+contract.getName()
 ```
