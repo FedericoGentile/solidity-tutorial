@@ -211,3 +211,53 @@ contract.setName('variableName')
 ```sh
 contract.getName()
 ```
+
+# Special Variables and Functions
+
+There are special variables and functions which always exist in the global namespace and are mainly used to provide information about the blockchain or are general-use utility functions.
+
+## List of built-in variables/functions
+
+- `blockhash(uint blockNumber) returns (bytes32)`: hash of the given block - only works for 256 most recent, excluding current, blocks
+- `block.coinbase (address payable)`: current block miner’s address
+- `block.difficulty (uint)`: current block difficulty
+- `block.gaslimit (uint)`: current block gaslimit
+- `block.number (uint)`: current block number
+- `block.timestamp (uint)`: current block timestamp as seconds since unix epoch
+- `gasleft() returns (uint256)`: remaining gas
+- `msg.data (bytes calldata)`: complete calldata
+- `msg.sender (address payable)`: sender of the message (current call)
+- `msg.sig (bytes4)`: first four bytes of the calldata (i.e. function identifier)
+- `msg.value (uint)`: number of wei sent with the message
+- `now (uint)`: current block timestamp (alias for block.timestamp)
+- `tx.gasprice (uint)`: gas price of the transaction
+- `tx.origin (address payable)`: sender of the transaction (full call chain)
+
+## How to interact with built-in variables/functions
+In your contract type:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+  
+  function getSummary() external view returns(address, uint, uint){
+    
+        return (msg.sender, block.number, tx.gasprice);
+  }
+
+}
+```
+This contract has a function which returns the sender's address, the block number and the gas price for the transaction.
+
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```sh
+MyContract.deployed().then(function(i) { contract=i; })
+```
+```sh
+contract.getSummary().then(function(r){results=r;})
+```
+```sh
+results[0]
+parseFloat(results[1])
+parseFloat(results[2])
+```
