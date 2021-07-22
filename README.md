@@ -261,3 +261,95 @@ results[0]
 parseFloat(results[1])
 parseFloat(results[2])
 ```
+
+# Control Structures
+## If statement
+To check if a condition is valid or not, an if statement is needed. In order to do so, you can write this function in the contract:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+  
+  string public output;
+  string valueToCheck = "pizza";
+
+  function ifStatement(string memory value) external returns(string memory){
+
+      if(keccak256(abi.encodePacked(value)) != keccak256(abi.encodePacked(valueToCheck))){
+          output = "Enjoy your meal";
+          
+      }
+      else{
+          output = "Time for a diet";
+      }
+
+      return output;
+
+  }
+
+}
+```
+You can combine multiple checks by using the **AND**/**OR** statements which are expressed with the following characters **&&**/**||**.
+
+To interact with the function above, type the following commands in the truffle console:
+```sh
+MyContract.deployed().then(function(i) { contract=i; })
+```
+```sh
+contract.ifStatement('pizza')
+```
+The expected result is `Time for a diet`.
+
+## For Loop
+A for loop performs as many iterations as declared. In your contract type:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+  
+  uint public sum;
+  function forLoop(uint end) external returns(uint){
+      for(uint i=0; i<end; i++) {
+          sum = sum+1;
+      }
+      return sum;
+  }
+
+}
+```
+
+To interact with the function above, type the following commands in the truffle console:
+```sh
+MyContract.deployed().then(function(i) { contract=i; })
+```
+```sh
+contract.forLoop(10)
+```
+The expected result is `10`.
+
+## While Loop
+A while loop performs operations until a certain condition is met. In your contract type:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+  
+  function whileLoop(uint end) external pure returns(string memory){
+    uint j = 0;
+    while(j<end) {
+        j = j+1;
+    }
+    return "Done";
+  }
+
+}
+```
+
+To interact with the function above, type the following commands in the truffle console:
+```sh
+MyContract.deployed().then(function(i) { contract=i; })
+```
+```sh
+contract.whileLoop(25000)
+```
+After a few seconds, the expected result is `Done`.
