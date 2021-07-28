@@ -300,7 +300,7 @@ contract.ifStatement('pizza')
 ```
 The expected result is `Time for a diet`.
 
-## For Loop
+## For loop
 A for loop performs as many iterations as declared. In your contract type:
 ```js
 pragma solidity ^0.8.0;
@@ -327,7 +327,7 @@ contract.forLoop(10)
 ```
 The expected result is `10`.
 
-## While Loop
+## While loop
 A while loop performs operations until a certain condition is met. In your contract type:
 ```js
 pragma solidity ^0.8.0;
@@ -353,3 +353,61 @@ MyContract.deployed().then(function(i) { contract=i; })
 contract.whileLoop(25000)
 ```
 After a few seconds, the expected result is `Done`.
+
+# Arrays
+In Solidity, arrays can contain only one data type. There 2 typologies of arrays: **storage** and **memory**. They can only be manipulated inside of a function.
+
+## Storage arrays
+They are stored in the blockchain. The size does not need to be declered and they posess the `push` method. They are defined in the following way:
+```js
+uint[] nameArray;
+```
+To add an item to the array you can type:
+```js
+nameArray[0] = 23;
+```
+or 
+```js
+nameArray.push(5);
+```
+By using the lines written above, the array will contain the values 23 and 5.
+To delete an item in a specific index, you can write the following line of code:
+```js
+delete nameArray[1];
+```
+
+## Memory arrays
+They are declared only inside of a function, they have a fixed size and do not posess the `push` method.
+To declare for example an array of size 10, the following line of code is needed:
+```js
+uint[] memory nameArray = new uint[](10);
+```
+To add an item to the array the index notation is required:
+```js
+nameArray[0] = 23;
+```
+To delete an item in a specific index, you can write the following line of code:
+```js
+delete nameArray[1];
+```
+
+## Array as input of a function
+To pass an array as an input argument of a function you need to check the visibility keyword. If the function is of type **external** then:
+```js
+function funcName(uint[] calldata myArray) external {
+  // some operation
+}
+```
+If the function is of type **public** or **internal** then:
+```js
+function funcName(uint[] memory myArray) internal {
+  // some operation
+}
+```
+## Array as output of a function
+To return an array as the output of a function the following lines of code are needed:
+```js
+function funcName() external returns(uint[] memory) {
+  // some operation
+}
+```

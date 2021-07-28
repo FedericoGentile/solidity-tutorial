@@ -2,34 +2,35 @@ pragma solidity ^0.8.0;
 
 contract MyContract {
 
-    string public output;
-    string valueToCheck = "pizza";
+    // storage
+    uint[] public myArray1;
 
-    function ifStatement(string memory value) external returns(string memory){
-        if(keccak256(abi.encodePacked(value))==keccak256(abi.encodePacked(valueToCheck))){
-            output = "buon appetito";
-        }
-        else{
-            output = "sei a dieta?";
+    function myFunc1(uint end) external returns(uint[] memory){
+        for(uint i=0; i<end; i++){
+            myArray1.push(i*2);
         }
 
-        return output;
+        return myArray1;
     }
 
-    uint public sum;
-    function forLoop(uint end) external returns(uint) {
-        for(uint i = 0; i<end; i++){
-            sum = sum+1;
+    // memory
+    function myFunc2() external pure returns(uint[] memory){
+        uint[] memory myArray2 = new uint[](10);
+
+        for(uint i=0; i<myArray2.length; i++){
+            myArray2[i] = i*2;
         }
-        return sum;
+
+        return myArray2;
     }
 
-     function whileLoop(uint end) external pure returns(string memory){
-         uint j = 0;
-         while(j<end){
-             j = j + 1;
-         }
-         return "Done";
-     }
 
+
+    //function myFunc3(uint[] calldata _myArray) external {
+    //
+    //}
+
+    //function myFunc3(uint[] memory _myArray) internal {
+    //
+    //}
 }
