@@ -2,35 +2,14 @@ pragma solidity ^0.8.0;
 
 contract MyContract {
 
-    // storage
-    uint[] public myArray1;
+    mapping (address=>uint) public age;
 
-    function myFunc1(uint end) external returns(uint[] memory){
-        for(uint i=0; i<end; i++){
-            myArray1.push(i*2);
-        }
-
-        return myArray1;
+    function assignAge(uint _age) external {
+        age[msg.sender] = _age;
     }
 
-    // memory
-    function myFunc2() external pure returns(uint[] memory){
-        uint[] memory myArray2 = new uint[](10);
-
-        for(uint i=0; i<myArray2.length; i++){
-            myArray2[i] = i*2;
-        }
-
-        return myArray2;
+    function getAge(address _sender) external view returns(uint){
+        return age[_sender];
     }
 
-
-
-    //function myFunc3(uint[] calldata _myArray) external {
-    //
-    //}
-
-    //function myFunc3(uint[] memory _myArray) internal {
-    //
-    //}
 }

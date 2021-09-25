@@ -411,3 +411,122 @@ function funcName() external returns(uint[] memory) {
   // some operation
 }
 ```
+
+# Mappings
+They are very similar to Javascript object literals or Python dictionaries. The property and the value can be of different data types but once defined they cannot be mixed with other types.
+
+## Declare a mapping
+To declare a mapping the following expression can be used:
+```js
+// mapping(dataType1 => dataType2) mappingName;
+mapping(address => uint) age;
+```
+
+## CRUD
+
+### Create
+Mappings are created inside of a function:
+```js
+function functionName() external {
+  // mappingName[key] = value;
+  age[msg.address] = 30;
+}
+```
+
+### Read
+You can read and access mapping content by specifying a key:
+```js
+function functionName() external {
+  // mappingName[key]
+  age[msg.address]; // values is 30
+}
+```
+
+### Update
+To update a value, just reference a key and assign a new value:
+```js
+function functionName() external {
+  // mappingName[key] = newValue;
+  age[msg.address] = 50; // old values was 30, new value is 50
+}
+```
+
+### Delete
+To delete and item use the `delete` keyword:
+```js
+function functionName() external {
+  // delete mappingName[key];
+  delete age[msg.address]; // no values assigned to msg.address
+}
+```
+
+## Default value
+It is possible to access keys which do not have any assigned value. This is because every datatype as a default value:
+- 0 for uint
+- '' for string
+- False for bool
+- ...
+
+## Nested mappings
+It is possible to nest mappings in the following way:
+```js
+// mapping(dataType1 => mapping(dataType2 => dataType3)) mappingName;
+mapping(address => mapping(string => uint)) user;
+```
+To interact with it all the CRUD operations are valid. The only difference is that 2 keys need to referenced instead:
+```js
+function functionName() external {
+  // mappingName[key1][key2]
+  user[msg.address]['Alice'] = 23;
+}
+```
+
+## Arrays in mappings
+It is possible to combine arrays and mappings in the following way:
+```js
+// mapping(dataType1 => dataType2[]) mappingName;
+mapping(address => uint[]) goals;
+```
+To manipulate this mapping, you don't need to instantiate the array as it is already done by default by Solidity:
+ ```js
+function functionName() external {
+  // mappingName[key].push(value);
+  goals[msg.address].push(5);
+}
+```
+All the CRUD operations are still valid.
+
+## How to interact with mappings
+Consider the following smart-contract which allows to assign the age of the contract sender:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+
+    mapping(address => uint) public age;
+
+    function assignAge(uint _age) external {
+        age[msg.sender] = _age;
+    }
+
+    function getAge(address _sender) external view returns(uint) {
+        
+        return age[_sender];
+    }
+
+}
+```
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```js
+MyContract.deployed().then(function(i) { contract=i;})
+```
+```js
+contract.assignAge(31)
+```
+```js
+contract.getAge('0x152aeDe78F7399fe36b1bB15093a7A3083dC6e95').then(function(r){result=r;}) // first address displayed in Ganache
+```
+```js
+parseFloat(result) // 31
+```
+If the second address displayed in Ganache is used, the result should be 0.
