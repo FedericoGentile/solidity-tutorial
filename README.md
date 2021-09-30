@@ -530,3 +530,123 @@ contract.getAge('0x152aeDe78F7399fe36b1bB15093a7A3083dC6e95').then(function(r){r
 parseFloat(result) // 31
 ```
 If the second address displayed in Ganache is used, the result should be 0.
+
+# Structs
+Structures are very good to store structured data. They are declared by defining a template which contains different fields which represent an object.
+
+## Declare a struct
+To declare a struct the following expression can be used:
+```js
+// struct structName {
+// dataType1 fieldName1;
+// dataType2 fieldName2;
+// ...       ...; 
+// }
+struct Player {
+  string name;
+  address addr;
+  uint goals;
+}
+```
+
+## CRUD
+
+### Create
+An instance of the struct must be created within a function:
+```js
+function functionName() external {
+  // structName memory variableName = structName(fieldValue1, fieldValue2, ...)
+  Player memory player1 = Player('Messi', msg.sender, 40) // option 1
+
+  // structName memory variableName = structName({fieldName1: fieldValue1, fieldName2: fieldValue2, ...})
+  Player memory player2 = Player({goals:36, name:'Ronaldo', address:msg.sender}) // option 2
+}
+```
+
+## Read
+You can read and access struct content by specifying the field name:
+```js
+function functionName() external {
+  // variableName.fieldName1;
+  player1.goals; // values is 40
+}
+```
+
+### Update
+To update a value, just reference a filed and assign a new value:
+```js
+function functionName() external {
+  // variableName.fieldName1;
+  player1.goals = 50; // values is 50
+}
+```
+
+### Delete
+To delete a struct instance use the `delete` keyword:
+```js
+function functionName() external {
+  // delete variableName;
+  delete player1;
+}
+```
+
+## Array of structs
+It is possible to store structs inside of arrays in the following way:
+```js
+// structName[] arrayName;
+Player[] players;
+
+function functionName() external {
+  // arrayName.push(variableName);
+  players.push(player1);
+  players.push(player2);
+}
+```
+
+## Mapping of structs
+It is possible to store structs inside of mappings in the following way:
+```js
+// mapping(dataType1 => structName) mappingName;
+mapping(address => Player) players;
+
+function functionName() external {
+  // mappingName[key] = variableName;
+  players['0x152aeDe78F7399fe36b1bB15093a7A3083dC6e95'] = player1;
+  players['0x5Cd4a421f6E28E14Ba838b42BaADebAd4EB9A658'] = player2;
+}
+```
+
+## How to interact with structs
+Consider the following smart-contract which allows to assign the name and goals of each player and stores it into an array:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+
+    struct Player {
+        string name;
+        uint goals;
+    }
+
+    Player[] public players;
+
+    function addPlayer(string calldata _name, uint _goals) external {
+
+        Player memory player = Player(_name, _goals);
+
+        players.push(player);
+
+    }
+
+}
+```
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```js
+MyContract.deployed().then(function(i) { contract=i;})
+```
+```js
+contract.addPlayer('messi',40)
+```
+```js
+contract.players(0)
+```
