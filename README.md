@@ -1,3 +1,62 @@
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Dependencies](#dependencies)
+  - [Install node.js](#install-nodejs)
+  - [Install Ganache](#install-ganache)
+  - [Install Truffle](#install-truffle)
+  - [Install Web3](#install-web3)
+  - [Install Metamask](#install-metamask)
+- [Set up a project](#set-up-a-project)
+  - [Create folder structure](#create-folder-structure)
+  - [Configure truffle](#configure-truffle)
+- [Create a new contract](#create-a-new-contract)
+- [Deploy the contract](#deploy-the-contract)
+- [Interact with the contract](#interact-with-the-contract)
+- [Variables](#variables)
+  - [Types](#types)
+  - [Visibility](#visibility)
+  - [How to interact with variables](#how-to-interact-with-variables)
+- [Functions](#functions)
+  - [Visibility keywords](#visibility-keywords)
+  - [Modifier keywords](#modifier-keywords)
+  - [How to interact with functions](#how-to-interact-with-functions)
+- [Special Variables and Functions](#special-variables-and-functions)
+  - [List of built-in variables/functions](#list-of-built-in-variablesfunctions)
+  - [How to interact with built-in variables/functions](#how-to-interact-with-built-in-variablesfunctions)
+- [Control Structures](#control-structures)
+  - [If statement](#if-statement)
+  - [For loop](#for-loop)
+  - [While loop](#while-loop)
+- [Arrays](#arrays)
+  - [Storage arrays](#storage-arrays)
+  - [Memory arrays](#memory-arrays)
+  - [Array as input of a function](#array-as-input-of-a-function)
+  - [Array as output of a function](#array-as-output-of-a-function)
+- [Mappings](#mappings)
+  - [Declare a mapping](#declare-a-mapping)
+  - [CRUD](#crud)
+    - [Create](#create)
+    - [Read](#read)
+    - [Update](#update)
+    - [Delete](#delete)
+  - [Default value](#default-value)
+  - [Nested mappings](#nested-mappings)
+  - [Arrays in mappings](#arrays-in-mappings)
+  - [How to interact with mappings](#how-to-interact-with-mappings)
+- [Structs](#structs)
+  - [Declare a struct](#declare-a-struct)
+  - [CRUD](#crud-1)
+    - [Create](#create-1)
+    - [Read](#read-1)
+    - [Update](#update-1)
+    - [Delete](#delete-1)
+  - [Array of structs](#array-of-structs)
+  - [Mapping of structs](#mapping-of-structs)
+  - [How to interact with structs](#how-to-interact-with-structs)
+- [Enums](#enums)
+  - [Declare an enum](#declare-an-enum)
+  - [How to interact with enums](#how-to-interact-with-enums)
+  
 # Dependencies
 
 ## Install node.js
@@ -563,7 +622,7 @@ function functionName() external {
 }
 ```
 
-## Read
+### Read
 You can read and access struct content by specifying the field name:
 ```js
 function functionName() external {
@@ -650,3 +709,59 @@ contract.addPlayer('messi',40)
 ```js
 contract.players(0)
 ```
+
+# Enums
+Enums are a way to represent different options. The order of the options matters since the first on is corresponds to 0, the second to 1 and so on.
+
+## Declare an enum
+To declare an enum, the following expression can be used:
+```js
+// enum ENUMNAME {OPTION0, 
+//                OPTION1,
+//                ...
+//                OPTIONX};
+// ENUMNAME variableName;
+enum LIGHT {ON,
+            OFF}
+LIGHT light;
+```
+
+## How to interact with enums
+Consider the following smart-contract which allows to change the state of a light variable from ON to OFF:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+
+    enum STATUS {ON, 
+                 OFF}
+    STATUS public light;
+
+    function turnLight(string memory _state) external {
+        if(keccak256(abi.encodePacked(_state))==keccak256(abi.encodePacked('on'))){
+            light = STATUS.ON;
+        }
+        else{
+            light = STATUS.OFF;
+        }
+    }
+
+    function lightStatus() external view returns (STATUS){
+        return light;
+    }
+}
+```
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```js
+MyContract.deployed().then(function(i) { contract=i;})
+```
+```js
+contract.turnLight('on')
+```
+```js
+contract.lightStatus().then(function(s){status=s;})
+```
+```js
+parseFloat(status)
+```
+The status is `0` if the light is ON, `1` if OFF.

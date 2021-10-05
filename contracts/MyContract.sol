@@ -2,15 +2,25 @@ pragma solidity ^0.8.0;
 
 contract MyContract {
 
-    struct Player {
-        string name;
-        uint goals;
+    enum STATUS {
+        ON,
+        OFF
+    }
+    STATUS public light;
+
+    function turnLight(string memory _state) external {
+
+        if(keccak256(abi.encodePacked(_state)) == keccak256(abi.encodePacked('on'))){
+            light = STATUS.ON;
+        }
+        else{
+            light = STATUS.OFF;
+        }
+
     }
 
-    Player[] public players;
-    function addPlayer(string calldata _name, uint _goals) external {
-        Player memory player = Player(_name, _goals);
-        players.push(player);
+    function lightStatus() external view returns(STATUS){
+        return light;
     }
 
 }
