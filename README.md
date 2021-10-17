@@ -56,6 +56,9 @@
 - [Enums](#enums)
   - [Declare an enum](#declare-an-enum)
   - [How to interact with enums](#how-to-interact-with-enums)
+- [Events](#events)
+  - [Declare an event](#declare-an-event)
+  - [How to interact with events](#how-to-interact-with-events)
   
 # Dependencies
 
@@ -719,7 +722,7 @@ To declare an enum, the following expression can be used:
 // enum ENUMNAME {OPTION0, 
 //                OPTION1,
 //                ...
-//                OPTIONX};
+//                OPTIONX}
 // ENUMNAME variableName;
 enum LIGHT {ON,
             OFF}
@@ -765,3 +768,54 @@ contract.lightStatus().then(function(s){status=s;})
 parseFloat(status)
 ```
 The status is `0` if the light is ON, `1` if OFF.
+
+# Events
+Events are used to propagate information from the smart-contract to the outside world. They allow to record that a specific activity (or event) has been triggered and it is possible to see its details.
+
+
+## Declare an event
+To declare an event the following expression can be used:
+```js
+// event EventName ( 
+// dataType1 fieldName1,
+// dataType2 fieldName2,
+// ...       ...
+//)
+event Score(
+        uint date,
+        string player,
+        string team
+);
+```
+Once declared it is not sufficient to define the content of the event but it is required to be triggered by using the `emit` command.
+
+## How to interact with events
+Consider the following smart-contract which emits the event associated to a goal scored every time the function is called by the user. By doing so it is possible to certify that the event has taken place:
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+
+    event Score(
+        uint date,
+        string player,
+        string team
+    );
+
+    function goalScored(string memory _player, string memory _team) external {
+        emit Score(block.timestamp, _player, _team);
+    }
+}
+```
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```js
+MyContract.deployed().then(function(i) { contract=i;})
+```
+```js
+contract.goalScored('Messi','Real Madrid')
+contract.goalScored('Messi','Manchester United')
+```
+To check out all the events that have taken place since the first validation block type:
+```js
+contract.getPastEvents('allEvents',{fromBlock:0})
+```

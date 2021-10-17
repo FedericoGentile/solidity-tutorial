@@ -1,26 +1,9 @@
 pragma solidity ^0.8.0;
 
 contract MyContract {
+    event Score(uint256 date, string player, string team);
 
-    enum STATUS {
-        ON,
-        OFF
+    function goalScored(string memory _player, string memory _team) external {
+        emit Score(block.timestamp, _player, _team);
     }
-    STATUS public light;
-
-    function turnLight(string memory _state) external {
-
-        if(keccak256(abi.encodePacked(_state)) == keccak256(abi.encodePacked('on'))){
-            light = STATUS.ON;
-        }
-        else{
-            light = STATUS.OFF;
-        }
-
-    }
-
-    function lightStatus() external view returns(STATUS){
-        return light;
-    }
-
 }
