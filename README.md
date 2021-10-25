@@ -59,7 +59,11 @@
 - [Events](#events)
   - [Declare an event](#declare-an-event)
   - [How to interact with events](#how-to-interact-with-events)
-  
+- [Memory Locations](#memory-locations)
+  - [Storage](#storage)
+  - [Memory](#memory)
+  - [Stack](#stack)
+  - [Calldata](#calldata)
 # Dependencies
 
 ## Install node.js
@@ -819,3 +823,13 @@ To check out all the events that have taken place since the first validation blo
 ```js
 contract.getPastEvents('allEvents',{fromBlock:0})
 ```
+
+# Memory Locations
+## Storage
+When a variable is assigned a memory location of type **storage**, then the variable is stored in the blockchain. It can be read and not deleted. It is the default type if nothing is specified. [Example](#storage-arrays)
+## Memory 
+When a variable is assigned a memory location of type **memory**, then the variable is not stored in the blockchain rather it is kept in the memory of the virtual machine during the execution of the function. [Example](#how-to-interact-with-functions)
+## Stack
+This is the memory location of all the variables defined inside of a function. They exist during the execution time of the function itself.
+## Calldata
+This type of memory location is only available to variables which are linked to a function of type **external** or **public**. [Example](#how-to-interact-with-structs).
