@@ -64,6 +64,9 @@
   - [Memory](#memory)
   - [Stack](#stack)
   - [Calldata](#calldata)
+- [Sending ETH from/to a smart-contract](#sending-eth-fromto-a-smart-contract)
+  - [Send ETH to](#send-eth-to)
+  - [Send ETH from](#send-eth-from)
 # Dependencies
 
 ## Install node.js
@@ -833,3 +836,85 @@ When a variable is assigned a memory location of type **memory**, then the varia
 This is the memory location of all the variables defined inside of a function. They exist during the execution time of the function itself.
 ## Calldata
 This type of memory location is only available to variables which are linked to a function of type **external** or **public**. [Example](#how-to-interact-with-structs).
+
+# Sending ETH from/to a smart-contract
+It is possible to send Ether between smart-contracts and addresses thus allowing financial transactions.
+
+## Send ETH to
+In order to send Ether to a smart contract, a function of type **payable** must be created. Another function to check the balance of the smart-contract is needed to verify the current amount of *wei* present.
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+
+    function fundContract() external payable {
+
+    }
+
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
+    }
+
+}
+```
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```js
+MyContract.deployed().then(function(i) { contract=i;})
+```
+```js
+contract.fundContract({value: 500000000000000000})
+```
+Check the balance of the smart-contract to verify that the amount has been transferred:
+```js
+contract.getBalance().then(function(r){result=r;})
+parseFloat(result)
+```
+
+## Send ETH from
+To send Ether from the smart-contract to another smart-contract or address it is necessary to assign to the recipient the property **payable**. The amount of currency expressed in *wei* is then set as the input of one of following method:
+- **transfer**: generates an error if the transaction is not successful causing the contract to fail. It uses 2300 gas.
+- **send**: returns a boolean indicating if the transaction was successful. It uses 2300 gas.
+- **call**: it allows to specify if all or a fraction of the gas should be sent (max 2300). It also returns a boolean indicating if the transaction was successful.
+
+The **call** method is the most recommended. 
+```js
+pragma solidity ^0.8.0;
+
+contract MyContract {
+
+    function fundContract() external payable {
+
+    }
+
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
+    }
+
+    function transferAmount(address payable _recipient, uint _amount) external payable {
+        _recipient.transfer(_amount);
+    }
+
+    function callAmount(address payable _recipient, uint _amount) external payable {
+        (bool success,  bytes memory data) = _recipient.call{value:_amount}("");
+        require(success, "Transaction Failed!");
+
+    }
+}
+```
+Deploy the contract by typing in the terminal `truffle migrate` and then open the truffle console by typing `truffle console`. Then use the following commands to access the variable:
+```js
+MyContract.deployed().then(function(i) { contract=i;})
+```
+Fund the contract:
+```js
+contract.fundContract({value: 10000000000000000000})
+```
+Send money from the contract to some address using *transfer* method:
+```js
+contract.transferAmount('0x60407B3b7a3acd2dAE922610129433B915A3C238', '3000000000000000000')
+```
+Send money from the contract to some address using *call* method:
+```js
+contract.callAmount('0x60407B3b7a3acd2dAE922610129433B915A3C238', '4000000000000000000')
+```
+Check in Ganache if the Ethers have been added correctly and withdrawn from the contract's balance.
